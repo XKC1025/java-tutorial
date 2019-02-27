@@ -1,6 +1,5 @@
 package com.xkc.learn.jdk8.lambda.popular_interface.predicate_interface;
 
-import java.sql.SQLOutput;
 import java.util.function.Predicate;
 
 /**
