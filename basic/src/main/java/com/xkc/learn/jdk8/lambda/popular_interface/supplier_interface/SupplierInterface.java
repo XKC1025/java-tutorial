@@ -1,4 +1,4 @@
-package com.xkc.learn.jdk8.lambda.popular_interface;
+package com.xkc.learn.jdk8.lambda.popular_interface.supplier_interface;
 
 import java.util.Arrays;
 import java.util.Random;

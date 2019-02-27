@@ -1,4 +1,4 @@
-package com.xkc.learn.jdk8.lambda.popular_interface;
+package com.xkc.learn.jdk8.lambda.popular_interface.consumer_interface;
 
 import java.util.function.Consumer;
 
@@ -17,7 +17,7 @@ public class ConsumerInterface {
     }
 
     public static void main(String[] args) {
-        consumer("xkc", (o) -> System.out.println(o));
+        consumer("xkc", o -> System.out.println(o));
 
         // 方法引用优化lambda表达式
         consumer("XKC", System.out::println);

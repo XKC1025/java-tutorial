@@ -1,4 +1,4 @@
-package com.xkc.learn.jdk8.lambda.popular_interface;
+package com.xkc.learn.jdk8.lambda.popular_interface.consumer_interface;
 
 import java.util.function.Consumer;
 
@@ -23,10 +23,10 @@ public class ConsumerAndThen {
         con2.accept(s);
 
         // andThen()默认方法
-        con1.andThen(con2).andThen((o) -> System.out.println("xkc" + s)).accept(s);
+        con1.andThen(con2).andThen(o -> System.out.println("xkc" + s)).accept(s);
     }
 
     public static void main(String[] args) {
-        consumer("XKC", System.out::println, (o) -> System.out.println(o + 1025));
+        consumer("XKC", System.out::println, o -> System.out.println(o + 1025));
     }
 }
