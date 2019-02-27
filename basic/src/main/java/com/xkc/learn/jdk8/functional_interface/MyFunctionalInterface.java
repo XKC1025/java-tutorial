@@ -2,6 +2,7 @@ package com.xkc.learn.jdk8.functional_interface;
 
 /**
  * 接口中只有一个抽象方法, 任意个非抽象方法
+ * 抽象方法不包括继承Object中的抽象方法
  */
 
 @FunctionalInterface
