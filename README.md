@@ -1,2 +1,2 @@
-# SuperJava
+# Java Tutorial
 Java之路
