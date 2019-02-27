@@ -13,7 +13,7 @@ public class UseFunctionalInterface {
         // 使用实现类
         show(new MyFunctionalInterfaceImpl());
 
-        // 使用局部匿名内部类
+        // 使用匿名内部类
         show(new MyFunctionalInterface() {
             @Override
             public void method() {
