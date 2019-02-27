@@ -1,8 +1,8 @@
-package com.xkc.learn.jdk8.lambda;
+package com.xkc.learn.jdk8.lambda.comparator_demo;
 
 import java.util.Arrays;
 
-public class LambdaPractice {
+public class ComparatorSort {
     private static class Person {
         private String name;
         private int age;

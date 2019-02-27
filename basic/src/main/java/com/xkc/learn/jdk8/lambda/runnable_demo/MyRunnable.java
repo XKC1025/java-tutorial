@@ -1,4 +1,4 @@
-package com.xkc.learn.jdk8.lambda;
+package com.xkc.learn.jdk8.lambda.runnable_demo;
 
 public class MyRunnable {
     public static void main(String[] args) {
