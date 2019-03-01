@@ -49,7 +49,7 @@ public class ConstruceRef {
         
         // int[]::new  数组构造方法引用
         int[] myArr = buildArr(10, int[]::new);
-        Stream.of(myArr).forEach(System.out::println);
+        Arrays.stream(myArr).forEach(System.out::println);
     }
 }
 
