@@ -1,5 +1,7 @@
 package com.xkc.learn.jdk8.method_reference;
 
+import java.util.Arrays;
+
 public class ConstruceRef {
     @FunctionalInterface
     interface CatBuilder<T> {
