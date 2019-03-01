@@ -1,4 +1,4 @@
-package com.xkc.test;
+package com.xkc.learn.junit;
 
 public class Calculator {
 

@@ -1,4 +1,4 @@
-package com.xkc.test;
+package com.xkc.learn.junit;
 
 import org.junit.After;
 import org.junit.Assert;

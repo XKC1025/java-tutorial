@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 public class UseAnd {
     private static boolean and(String string, Predicate<String> pre1, Predicate<String> pre2) {
         // 取反
-        // return pre1.negate().test(string);
+        // return pre1.negate().junit(string);
         return pre1.or(pre2).test(string);
     }
 
