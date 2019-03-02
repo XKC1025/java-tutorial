@@ -27,8 +27,8 @@ class Person {
         this.addr = addr;
     }
 
-    public void sayHello() {
-        System.out.println("Hello");
+    public void sayHello(String name) {
+        System.out.println("Hello " + name);
     }
 
     void sayGreet() {

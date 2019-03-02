@@ -77,6 +77,7 @@ public class ReflectObj {
 
     }
 
+    @SuppressWarnings({"unchecked"})
     private static void methods() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         // 获取全部public方法, 包括继承父类的public方法, 不包括父类中被重写的方法
         Method[] methods = clazz.getMethods();
@@ -98,7 +99,6 @@ public class ReflectObj {
         method1.setAccessible(true);
         Person person = new Person("XKC", 22);
         method1.invoke(person, "night");
-
 
     }
 
