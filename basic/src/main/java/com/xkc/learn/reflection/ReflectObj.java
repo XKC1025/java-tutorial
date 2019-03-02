@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+@SuppressWarnings({"all"})
 public class ReflectObj {
     // 获取Class对象
     // Class.class   Obj.getClass()  Class.forName("ClassName")
@@ -43,7 +44,6 @@ public class ReflectObj {
         System.out.println(field1.getName());
     }
 
-    @SuppressWarnings({"unchecked"})
     private static void constructors() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         // 获取public构造方法
         Constructor[] constructors = clazz.getConstructors();
