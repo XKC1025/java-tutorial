@@ -12,11 +12,9 @@ Throwable异常体系:
 throw:
 	在指定的方法中抛出指定的异常  throw new MyException(\"异常产生的原因\");
 	new的对象必须是Exception和Exception的子类对象
-	1.抛出的指定异常对象, 必须处理这个对象
-	2.抛出的是编译异常, 必须处理, 要么throws, 要么try...catch...
-	3.抛出的是RuntimeException及其子类(NullPointerException), 可以不处理, 默认交给JVM处理
+	1.抛出的是编译异常(Exception及其继承的自定义子类), 必须处理, 要么throws, 要么try...catch...
+	2.抛出的是RuntimeException及其子类(NullPointerException或者自定义子类), 可以不处理, 默认交给JVM处理
 
-	    
 throws:
 	异常处理的第一种方式
 	抛出的异常有子父类异常, 直接声明父类异常

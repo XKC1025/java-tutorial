@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 public class MyException2 {
     private static void readFile(String fileName) throws FileNotFoundException {
         if (!fileName.equals("/home/a.txt")) {
-            // 抛出指定的异常, 必须对异常进行处理
+            // 抛出编译期异常, 必须对异常进行处理
             // 本方法内处理不了, throws抛出给上层去处理  或者 try...catch...
             throw new FileNotFoundException("文件不存在");
         }
@@ -33,7 +33,7 @@ public class MyException2 {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        // readFile("/home/a.tx");
+        readFile("/home/a.tx");
 
         readFile2("/home/a.tx");
     }
