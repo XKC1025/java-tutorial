@@ -1,4 +1,4 @@
-package com.xkc.learn.thread;
+package com.xkc.learn.thread.create_thread;
 
 import static java.lang.Thread.sleep;
 

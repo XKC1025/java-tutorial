@@ -1,4 +1,4 @@
-package com.xkc.learn.thread;
+package com.xkc.learn.thread.create_thread;
 
 /**
  * 匿名内部类的方式实现线程

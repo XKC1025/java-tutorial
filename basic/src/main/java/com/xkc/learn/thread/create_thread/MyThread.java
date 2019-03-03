@@ -1,4 +1,4 @@
-package com.xkc.learn.thread;
+package com.xkc.learn.thread.create_thread;
 
 public class MyThread extends Thread {
     public MyThread(String name) {
