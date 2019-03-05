@@ -9,7 +9,9 @@ import java.util.Arrays;
 @SuppressWarnings({"all"})
 public class ReflectObj {
     // 获取Class对象
-    // Class.class   Obj.getClass()  Class.forName("ClassName")
+    // Class.class   Obj.getClass()  Class.forName("package.ClassName")
+    // Class.forName() 会加载static代码, 全类名不包括.java后缀名
+    // Class.class不会加载static代码
     private static Class clazz = Person.class;
 
     private static void fields() throws NoSuchFieldException, IllegalAccessException {
