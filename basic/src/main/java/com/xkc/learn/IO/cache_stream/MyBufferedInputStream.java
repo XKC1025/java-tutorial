@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class MyBufferedInputStream {
     public static void main(String[] args) throws IOException {
-        InputStream iutputStream = new BufferedInputStream(new FileInputStream("/home/xukechen/JavaEE/workspace/java-tutorial/basic/src/main/java/com/xkc/learn/IO/cache_stream/temp.txt"), 10);
+        InputStream iutputStream = new BufferedInputStream(new FileInputStream("basic/src/main/java/com/xkc/learn/IO/cache_stream/temp.txt"), 10);
 
         // 读数据
         int len;

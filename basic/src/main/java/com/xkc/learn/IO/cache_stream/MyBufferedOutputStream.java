@@ -10,7 +10,7 @@ import java.io.*;
 public class MyBufferedOutputStream {
     public static void main(String[] args) throws IOException {
         // 创建高效输出流对象
-        OutputStream outputStream = new BufferedOutputStream(new FileOutputStream("/home/xukechen/JavaEE/workspace/java-tutorial/basic/src/main/java/com/xkc/learn/IO/cache_stream/temp.txt", true));
+        OutputStream outputStream = new BufferedOutputStream(new FileOutputStream("basic/src/main/java/com/xkc/learn/IO/cache_stream/temp.txt", true));
 
         // 写数据
         outputStream.write(100);
