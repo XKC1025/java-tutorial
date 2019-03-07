@@ -12,7 +12,7 @@ import java.io.InputStream;
  */
 public class MyInputStream {
     public static void main(String[] args) throws IOException {
-        InputStream inputStream = new FileInputStream(new File("/home/xukechen/JavaEE/workspace/java-tutorial/basic/src/main/java/com/xkc/learn/IO/byte_stream/temp.txt"));
+        FileInputStream inputStream = new FileInputStream(new File("/home/xukechen/JavaEE/workspace/java-tutorial/basic/src/main/java/com/xkc/learn/IO/byte_stream/temp.txt"));
 
         int read;
 //        while ((read = inputStream.read()) != -1) {
