@@ -1,10 +1,8 @@
 package com.xkc.learn.IO.cache_stream;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class MyBufferedReader {
     public static void main(String[] args) throws IOException {
