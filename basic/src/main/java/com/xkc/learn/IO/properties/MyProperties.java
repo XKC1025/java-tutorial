@@ -19,11 +19,14 @@ public class MyProperties {
         // 设置属性
         properties.setProperty("Email", "898044807@qq.com");
 
+        // 用类加载器获取配置文件
+        InputStream resourceAsStream = MyProperties.class.getClassLoader().getResourceAsStream("config.properties");
+
         // 把系统环境变量信息保存进配置文件
-        properties.store(new FileOutputStream(new File("/home/xukechen/JavaEE/workspace/java-tutorial/basic/src/main/java/com/xkc/learn/IO/properties/config.properties")), "System environment variables");
+//        properties.store(new FileOutputStream(new File("/home/xukechen/JavaEE/workspace/java-tutorial/basic/src/main/java/com/xkc/learn/resources/config.properties")), "System environment variables");
 
         // 读取配置文件信息
-        properties.load(new FileReader("/home/xukechen/JavaEE/workspace/java-tutorial/basic/src/main/java/com/xkc/learn/IO/properties/config.properties"));
+        properties.load(resourceAsStream);
         System.out.println(properties.getProperty("user.name"));
         System.out.println(properties.getProperty("Email"));
 

@@ -1,7 +1,7 @@
 package com.xkc.learn.jdbc;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
@@ -15,15 +15,16 @@ public class JDBCUtils {
     static {
         Properties properties = new Properties();
         try {
-            properties.load(new FileReader("web/src/main/java/com/xkc/learn/jdbc/config.properties"));
+            InputStream resourceAsStream = JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties");
+            properties.load(resourceAsStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         url = properties.getProperty("url");
-        userName = properties.getProperty("userName");
-        passWord = properties.getProperty("passWord");
-        driver = properties.getProperty("driver");
+        userName = properties.getProperty("username");
+        passWord = properties.getProperty("password");
+        driver = properties.getProperty("driverClassName");
     }
 
     public static Connection getConnection() throws SQLException {
