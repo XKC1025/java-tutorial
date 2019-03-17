@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!-- 配置Servlet -->
+    <servlet>
+        <servlet-name>demo</servlet-name>
+        <servlet-class>com.xkc.learn.servlet.MyServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>demo</servlet-name>
+        <url-pattern>/demo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>demo2</servlet-name>
+        <servlet-class>com.xkc.learn.servlet.MyServlet2</servlet-class>
+        <!-- 指定Servlet创建时机, 服务器启动时创建 -->
+        <!-- 默认-1, 负数就是访问时创建 -->
+        <!-- 0或正整数, 服务器启动时创建 -->
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>demo2</servlet-name>
+        <url-pattern>/demo2</url-pattern>
+    </servlet-mapping>
+</web-app>
