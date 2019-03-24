@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="programmer" class="com.xkc.learn.domain.Programmer">
+        <!-- List注入 -->
+        <property name="cars">
+            <list>
+                <value>ofo</value>
+                <value>mobai</value>
+                <value>bmw</value>
+                <value>benz</value>
+            </list>
+        </property>
+        <!-- Set注入 -->
+        <property name="users">
+            <set>
+                <value>xkc</value>
+                <value>XKC</value>
+                <value>xu ke chen</value>
+                <value>xu ke chen</value>
+            </set>
+        </property>
+        <!-- map注入 -->
+        <property name="words">
+            <map>
+                <entry key="k" value="v"></entry>
+                <entry key="ke" value="val"></entry>
+                <entry key="key" value="value"></entry>
+            </map>
+        </property>
+        <!-- Array注入 -->
+        <property name="ints">
+            <array>
+                <value>1</value>
+                <value>11</value>
+                <value>111</value>
+                <value>1111</value>
+                <value>11111</value>
+            </array>
+        </property>
+        <!-- properties注入 -->
+        <property name="properties">
+            <props>
+                <prop key="username">root</prop>
+                <prop key="password">189546</prop>
+                <prop key="url">http://www.baidu.com</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

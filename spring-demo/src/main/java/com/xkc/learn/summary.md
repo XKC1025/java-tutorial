@@ -35,3 +35,37 @@ Bean的生命周期:
 	8.如果存在类实现BeanPostProcessor(处理Bean), 执行postProcessAfterInitialization 执行业务处理
 	9.如果Bean实现DisposableBean 执行destroy
 	10.调用<bean destroy-method="customDestroy"> 执行指定销毁方法
+	
+依赖注入Bean属性(手动装配):
+	1.构造方法注入
+	2.setter方法注入
+	3.p命名空间注入(了解)
+	
+SpEL表达式:
+	<property name="name" value="#{表达式}">
+	用表达式取代固定值
+	#{123} / #{'jack'}: 数字, 单引号包围的是字符串
+	#{beanId}:          另一个Bean的引用
+	#{beanId.proName}:  操作数据
+	#{beanId.toString()}: 调用方法
+	#{T(类).Field|Method}: 静态字段|方法
+	
+数据结构的注入:
+	List
+	Set
+	Map
+	Array
+	Properties
+	
+注解的注入: 自动注入, 简化配置
+	@Component      取代 <bean class="xx.xx.xx.xx">
+	@Component(id)  取代 <bean id="xxx" class="xx.xx.xx.xx">
+	@Repository(id) Dao层
+	@Service(id)    service层
+	@Controller(id) web层
+	@Autowired:     根据类型自动注入
+	@Qualifier(id)  指定自动注入的id, 等价于@Autowired + @Qualifier(id)
+	@Resource(id)   根据名称自动注入
+	@PostConstruct  自定义初始化
+	@PreDestroy     自定义销毁
+	

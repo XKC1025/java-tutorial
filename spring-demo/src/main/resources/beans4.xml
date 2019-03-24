@@ -11,6 +11,6 @@
     </bean>
 
     <!-- 配置Bean处理器, Spring自动管理, 不需要设置id -->
-    <bean class="com.xkc.learn.domain.MyBeanPostProcessor"></bean>
+    <bean class="com.xkc.learn.bean_factory.MyBeanPostProcessor"></bean>
 
 </beans>

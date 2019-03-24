@@ -1,4 +1,4 @@
-package com.xkc.learn.domain;
+package com.xkc.learn.bean_factory;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

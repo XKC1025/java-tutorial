@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student" class="com.xkc.learn.domain.Student">
+        <property name="name" value="XKC"></property>
+        <property name="sex" value="Male"></property>
+        <property name="age" value="22"></property>
+    </bean>
+
+    <!-- SpEL表达式 -->
+    <!--<property name="name" value="#{表达式}">-->
+    <!--用表达式取代固定值-->
+    <!--#{123} / #{'jack'}: 数字, 单引号包围的是字符串-->
+    <!--#{beanId}:    另一个Bean的引用 等价于ref-->
+    <!--#{beanId.proName}:  操作数据-->
+    <!--#{beanId.toString()}: 调用方法-->
+    <!--#{T(类).Field|Method}: 静态字段|方法-->
+    <bean id="customer" class="com.xkc.learn.domain.Customer">
+        <property name="name" value="#{'xkc'.toUpperCase()}"></property>
+        <property name="pi" value="#{T(Math).PI}"></property>
+        <!--<property name="student" ref="student"></property>-->
+        <property name="student" value="#{student}"></property>
+    </bean>
+</beans>
