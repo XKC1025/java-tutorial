@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 配置bean (装配bean) -->
+    <bean id="userService" class="com.xkc.learn.service.IUserServiceImpl">
+        <!-- 依赖注入, 调用属性setter方法 -->
+        <property name="name" value="XKC" ></property>
+    </bean>
+</beans>
