@@ -64,8 +64,8 @@ SpEL表达式:
 	@Service(id)    service层
 	@Controller(id) web层
 	@Autowired:     根据类型自动注入
-	@Qualifier(id)  指定自动注入的id, 等价于@Autowired + @Qualifier(id)
-	@Resource(id)   根据名称自动注入
+	@Qualifier(id)  指定自动注入的id
+	@Resource(id)   根据名称自动注入, 等价于@Autowired + @Qualifier(id)
 	@PostConstruct  自定义初始化
 	@PreDestroy     自定义销毁
 	

@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 配置bean (装配bean) -->
-    <bean id="userService" class="com.xkc.learn.service.IUserServiceImpl">
+    <bean id="userService" class="com.xkc.learn.impls.IUserServiceImpl">
         <!-- 依赖注入, 调用属性setter方法 -->
         <property name="name" value="XKC" ></property>
     </bean>

@@ -1,5 +1,6 @@
 package com.xkc.learn.service;
 
+import com.xkc.learn.impls.IUserServiceImpl;
 import org.junit.Test;
 
 public class IUserServiceImplTest {

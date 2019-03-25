@@ -1,7 +1,7 @@
 package com.xkc.learn.bean_annotation;
 
 import com.xkc.learn.domain.User;
-import com.xkc.learn.service.IUserServiceImpl;
+import com.xkc.learn.impls.IUserServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
