@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+    <bean id="userService" class="com.xkc.learn.impls.IUserServiceImpl"></bean>
+
+    <bean id="myAspect" class="com.xkc.learn.aop.aopalliance.MyAspect2"></bean>
+
+    <!-- 全自动AOP配置
+        1.配置AOP约束
+        2.配置aop:config标签, 切入点与通知结合
+
+        proxy-target-class="true"  使用cglib代理
+        不写默认Proxy代理
+
+        execution(* com.xkc.learn.service.*.*(..))
+                  返回值                类名.方法名(参数)
+    -->
+    <aop:config proxy-target-class="true">
+        <!-- 切入点
+         每个service方法前后都需要事务管理
+         -->
+        <aop:pointcut id="myPointCut" expression="execution(* com.xkc.learn.service.*.*(..))"></aop:pointcut>
+        <!-- 配置通知, 关联切入点 -->
+        <aop:advisor advice-ref="myAspect" pointcut-ref="myPointCut"></aop:advisor>
+    </aop:config>
+
+</beans>

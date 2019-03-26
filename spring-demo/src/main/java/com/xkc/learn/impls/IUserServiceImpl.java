@@ -23,8 +23,9 @@ public class IUserServiceImpl implements IUserService {
     }
 
     @Override
-    public void addUser() {
+    public int addUser() {
         System.out.println("保存用户" + name);
+        return 10;
     }
 
     @Override

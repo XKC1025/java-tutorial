@@ -69,3 +69,52 @@ SpEL表达式:
 	@PostConstruct  自定义初始化
 	@PreDestroy     自定义销毁
 	
+AOP面向切面编程:
+	1.底层采用代理机制
+	2.接口 + 实现类, Spring采用JDK的动态代理
+	3.实现类, 采用cglib字节码增强	
+	术语:
+		1.target    需要被代理的类
+		2.JoinPoint 连接点, 可能被拦截的方法
+		3.PointCut  切入点, 已经被拦截的方法
+		4.advice    通知/增强, after / before  比如开启事务和提交事务
+		5.Weaving   织入, 把增强的advice应用到目标对象来创建代理对象的过程
+		6.proxy     代理对象
+		7.Aspect    切面, 切入点和advice的结合
+		
+CGLIB增强字节码:
+	没有接口, 只有实现类, 采用cglib代理
+	在运行时, 创建目标类的子类, 增强目标类
+	
+AOP联盟通知: 通知在连接点的位置
+	1.前置通知
+	2.后置通知
+	3.环绕通知
+	4.异常抛出通知
+	5.引介通知   在目标类中添加新的方法和属性
+	
+Spring编写代理半自动:
+	让Spring创建代理对象, 从Spring容器中手动获取代理对象
+	依赖核心4+1  AOP联盟(一种规范)  spring-aop
+	
+SpringAOP全自动:
+	自动生成代理对象, 指定包下的方法调用都会被拦截
+	
+AspectJ:
+	通知类型, 只定义类型名称和方法格式
+	before          前置通知, 在方法执行前执行, 通知抛出异常, 方法中断
+	afterreturning  后置通知(用于常规数据处理) 方法正常返回后执行, 方法抛出异常, 通知无法执行
+					必须在方法执行后才能执行, 可以获得方法的返回值
+	around          环绕通知, 在方法的执行前后分别执行, 可以阻止方法的执行, 必须手动执行目标方法
+	afterthrowing   抛出异常通知, 方法抛出异常后执行,  方法不抛出异常, 则无法执行 
+	after           最终通知, 方法执行完毕后执行, 无论方法是否出现异常
+
+通知的执行顺序:
+	before -> around -> (afterthrowing)afterreturning -> around -> after
+AspectJ切入点表达式:
+	execution'(修饰符 返回值 包.类.方法名(参数) throws 异常)"
+	within
+	this
+	target
+	args
+	bean

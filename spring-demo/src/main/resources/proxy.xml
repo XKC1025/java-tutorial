@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--<context:annotation-config></context:annotation-config>-->
+    <!--<context:component-scan base-package="com.xkc"></context:component-scan>-->
+
+    <!-- 配置UserService -->
+    <bean id="userService" class="com.xkc.learn.impls.IUserServiceImpl"></bean>
+
+    <!-- 配置切面类对象 必须实现MethodInterceptor接口 -->
+    <bean id="myAspect2" class="com.xkc.learn.aop.aopalliance.MyAspect2"></bean>
+
+    <!-- 配置代理工厂对象 -->
+    <bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 配置接口 -->
+        <property name="interfaces" value="com.xkc.learn.service.IUserService"></property>
+
+        <!-- 配置目标类 -->
+        <property name="target" ref="userService"></property>
+
+        <!-- 配置切面类  不是ref  -->
+        <property name="interceptorNames" value="myAspect2"></property>
+
+        <!-- 默认使用动态代理 -->
+        <!-- 配置使用cglib生成代理对象 -->
+        <property name="optimize" value="true"></property>
+
+    </bean>
+
+</beans>

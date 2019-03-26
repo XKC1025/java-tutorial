@@ -12,5 +12,13 @@ public class MyBean10 {
         UserAction bean = context.getBean(UserAction.class);
 
         bean.addUser(new User());
+
+        // Bean上@Scope("prototype")注解开启多例模式
+        UserAction bean2 = context.getBean(UserAction.class);
+        System.out.println(bean);
+        System.out.println(bean2);
+
+        // 关闭Bean容器
+        ((ClassPathXmlApplicationContext) context).registerShutdownHook();
     }
 }

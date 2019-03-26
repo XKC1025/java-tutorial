@@ -3,7 +3,7 @@ package com.xkc.learn.service;
 import com.xkc.learn.domain.User;
 
 public interface IUserService {
-    void addUser();
+    int addUser();
 
     void addUser(User user);
 }
