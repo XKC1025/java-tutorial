@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 读取配置文件信息 -->
+    <context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
+
+    <!-- 配置dataSource对象 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+        <property name="username" value="root"/>
+        <property name="password" value="189546"/>
+    </bean>
+
+    <!-- 配置service -->
+    <bean id="iAccountService" class="com.xkc.learn.transaction.service.IAccountServiceImpl2">
+        <!-- 依赖注入, 调用属性setter方法 -->
+        <property name="iAccountDao" ref="iAccountDao"></property>
+    </bean>
+
+    <bean id="iAccountDao" class="com.xkc.learn.transaction.dao.IAccountDaoImpl">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 配置事务管理器 -->
+    <bean id="manager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- setter方法和构造器注入 -->
+        <!-- <property name="dataSource" ref="dataSource"></property> -->
+        <constructor-arg ref="dataSource"></constructor-arg>
+    </bean>
+
+    <!-- 配置AOP代理工厂  -->
+    <bean id="transferProxyFactoryBean" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <!-- 接口, 目标对象, 切面(无需配置) -->
+        <property name="proxyInterfaces" value="com.xkc.learn.transaction.service.IAccountService"></property>
+        <property name="target" ref="iAccountService"></property>
+
+        <property name="transactionManager" ref="manager"></property>
+
+        <!-- 事务详情配置 key:方法名  value:事务的配置-->
+        <!-- 格式: PROPAGATION, ISOLATION, [readOnly(只读), -Exception(异常回滚), +Exception(异常提交)] -->
+        <property name="transactionAttributes">
+            <props>
+                <prop key="transfer">PROPAGATION_REQUIRED, ISOLATION_DEFAULT, +java.lang.ArithmeticException</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
