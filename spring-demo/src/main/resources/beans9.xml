@@ -4,6 +4,25 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- 配置dataSource对象 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/test" />
+        <property name="username" value="root" />
+        <property name="password" value="189546" />
+    </bean>
+
+    <!--  JDBC Bean  -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <!-- 数据库连接池 -->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <bean id="iUserDaoImpl" class="com.xkc.learn.impls.IUserDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+
     <!-- 配置bean (装配bean) -->
     <bean id="userService" class="com.xkc.learn.impls.IUserServiceImpl">
         <!-- 依赖注入, 调用属性setter方法 -->
@@ -11,6 +30,4 @@
         <!--<property name="iUserDao" value="#{iUserDaoImpl}"></property>-->
         <property name="iUserDao" ref="iUserDaoImpl"></property>
     </bean>
-
-    <bean id="iUserDaoImpl" class="com.xkc.learn.impls.IUserDaoImpl"></bean>
 </beans>

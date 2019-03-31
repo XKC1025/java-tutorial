@@ -20,4 +20,5 @@ public class UserAction {
         System.out.println("controller 添加用户: " + user);
         iUserService.addUser(user);
     }
+
 }

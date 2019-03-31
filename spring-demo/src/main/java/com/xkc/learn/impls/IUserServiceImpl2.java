@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 //@Component
-@Service("myService")
-public class IUserServiceImpl implements IUserService {
+@Service("myService2")
+public class IUserServiceImpl2 implements IUserService {
     private String name;
 
     @Autowired
-    @Qualifier("iUserDaoImpl")
+    @Qualifier("iUserDaoImpl2")
     private IUserDao iUserDao;
 
     public String getName() {
@@ -38,7 +38,7 @@ public class IUserServiceImpl implements IUserService {
         iUserDao.addUser(user);
     }
 
-    public IUserServiceImpl() {
+    public IUserServiceImpl2() {
         System.out.println("创建IUserService对象");
     }
 
