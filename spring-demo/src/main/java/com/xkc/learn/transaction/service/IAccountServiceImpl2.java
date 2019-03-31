@@ -19,6 +19,8 @@ public class IAccountServiceImpl2 implements IAccountService {
     public void transfer(final String outer, final String inner, Integer money) {
         iAccountDao.out(outer, 500);
 
+        // int i = 10 / 0;
+
         iAccountDao.inner(inner, 500);
     }
 }

@@ -32,4 +32,30 @@ public class AccountServiceTest {
         iAccountService.transfer("xukechen", "zhaojuan", 500);
 
     }
+
+    /**
+     * AOP自动管理事务
+     */
+    @Test
+    public void testAOPTransaction() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("transaction3.xml");
+
+        IAccountService iAccountService = (IAccountService) context.getBean("AOPiAccountService");
+
+        iAccountService.transfer("xukechen", "zhaojuan", 500);
+
+    }
+
+    /**
+     * 基于注解AOP自动管理事务
+     */
+    @Test
+    public void testAnnoTransaction() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("transaction4.xml");
+
+        IAccountService iAccountService = (IAccountService) context.getBean("AnnoiAccountService");
+
+        iAccountService.transfer("xukechen", "zhaojuan", 500);
+
+    }
 }
