@@ -1,14 +1,14 @@
 package com.xkc.learn.mybatis.dao;
 
+import com.xkc.learn.mybatis.domain.OrderModel;
 import com.xkc.learn.mybatis.domain.UserModel;
 import com.xkc.learn.mybatis.vo.UserQueryVO;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
 
 public interface UserMapper {
-    UserModel findUserById(@Param("id") int id);
+    UserModel findUserById(int id);
 
     List<UserModel> findUserByUserName(String username);
 
@@ -29,4 +29,11 @@ public interface UserMapper {
     UserModel findByResultMap(int id);
 
     List<UserModel> findByIfWhere(UserQueryVO queryVO);
+
+    List<UserModel> findByForEach(UserQueryVO ids);
+
+    List<UserModel> findByForEach2(List<Integer> ids);
+
+    // 懒加载
+    List<OrderModel> findOrderAndUserByLazyLoading();
 }

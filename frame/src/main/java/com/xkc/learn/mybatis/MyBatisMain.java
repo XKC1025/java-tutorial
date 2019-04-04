@@ -14,12 +14,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MyBatisMain {
     private SqlSession sqlSession;
@@ -179,5 +177,55 @@ public class MyBatisMain {
         List<UserModel> users = mapper.findByIfWhere(new UserQueryVO(user, order));
 
         System.out.println(users);
+    }
+
+    @Test
+    public void testForEach() {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        UserQueryVO userQueryVO = new UserQueryVO();
+
+        ArrayList<Integer> integers = new ArrayList<>();
+        integers.add(31);
+        integers.add(32);
+        integers.add(33);
+        integers.add(34);
+        integers.add(35);
+
+        userQueryVO.setIds(integers);
+        List<UserModel> users = mapper.findByForEach(userQueryVO);
+
+        System.out.println(users);
+    }
+
+    @Test
+    public void testForEach2() {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        ArrayList<Integer> integers = new ArrayList<>();
+        integers.add(31);
+        integers.add(32);
+        integers.add(33);
+        integers.add(34);
+        integers.add(35);
+
+        // 传入List集合
+        List<UserModel> users = mapper.findByForEach2(integers);
+
+        System.out.println(users);
+    }
+
+    /**
+     * 懒加载
+     */
+    @Test
+    public void testLazyLoading() {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        List<OrderModel> orders = mapper.findOrderAndUserByLazyLoading();
+
+        orders.forEach(System.out::println);
+
+        System.out.println(orders.get(0).getUser());
     }
 }

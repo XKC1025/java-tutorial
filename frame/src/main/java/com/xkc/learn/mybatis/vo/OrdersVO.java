@@ -1,27 +1,22 @@
-package com.xkc.learn.mybatis.domain;
+package com.xkc.learn.mybatis.vo;
 
-import com.xkc.learn.mybatis.vo.OrderDetail;
+import com.xkc.learn.mybatis.domain.UserModel;
 
 import java.util.Date;
 import java.util.List;
 
-public class OrderModel {
+public class OrdersVO {
     private Integer id;
     private Integer user_id;
     private Integer money;
     private Date create_time;
     private String note;
-    private UserModel user;
-    private List<OrderDetail> details;
 
-    public OrderModel() {
-    }
+    private UserModel user;  // 订单所属用户
 
-    public OrderModel(Integer id, Integer user_id, Integer money, Date create_time) {
-        this.id = id;
-        this.user_id = user_id;
-        this.money = money;
-        this.create_time = create_time;
+    private List<OrderDetail> details; // 订单商品详情  一对多
+
+    public OrdersVO() {
     }
 
     public Integer getId() {
@@ -82,7 +77,7 @@ public class OrderModel {
 
     @Override
     public String toString() {
-        return "OrderModel{" +
+        return "OrdersVO{" +
                 "id=" + id +
                 ", user_id=" + user_id +
                 ", money=" + money +

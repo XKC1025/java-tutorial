@@ -2,6 +2,7 @@ package com.xkc.learn.mybatis.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class UserModel implements Serializable {
     private Integer id;
@@ -9,6 +10,8 @@ public class UserModel implements Serializable {
     private String sex;
     private Date birthday;
     private String address;
+
+    private List<OrderModel> orders;
 
     public UserModel() {
     }
@@ -68,6 +71,14 @@ public class UserModel implements Serializable {
         this.address = address;
     }
 
+    public List<OrderModel> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderModel> orders) {
+        this.orders = orders;
+    }
+
     @Override
     public String toString() {
         return "UserModel{" +
@@ -76,6 +87,7 @@ public class UserModel implements Serializable {
                 ", sex='" + sex + '\'' +
                 ", birthday=" + birthday +
                 ", address='" + address + '\'' +
+                ", orders=" + orders +
                 '}';
     }
 }

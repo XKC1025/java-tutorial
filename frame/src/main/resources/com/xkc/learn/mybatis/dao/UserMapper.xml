@@ -11,6 +11,18 @@
         <result column="birthday_" property="birthday"></result>
     </resultMap>
 
+    <resultMap id="lazyLoadingResultMap" type="OrderModel">
+        <id column="id" property="id"></id>
+        <result column="user_id" property="user_id"></result>
+        <result column="money" property="money"></result>
+        <result column="create_time" property="create_time"></result>
+        <result column="note" property="note"></result>
+
+        <!-- 调用findUserById 才会执行此SQL语句 -->
+        <association property="user" select="com.xkc.learn.mybatis.dao.UserMapper.findUserById" column="user_id">
+        </association>
+    </resultMap>
+
     <!-- SQL片段 -->
     <sql id="baseColumn">
         id, username, sex, birthday, address
@@ -113,5 +125,38 @@
         <where>
             <include refid="queryCondition"/>
         </where>
+    </select>
+
+    <select id="findByForEach" parameterType="userQueryVO" resultType="userModel">
+        SELECT
+        <include refid="baseColumn"/>
+        FROM `user`
+        <where>
+            <if test="ids != null and ids.size() >0 ">
+                <foreach collection="ids" item="id" open="id IN (" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="findByForEach2" parameterType="list" resultType="userModel">
+        SELECT
+        <include refid="baseColumn"/>
+        FROM `user`
+        <where>
+            AND 1 = 1 AND
+            <if test="list != null and list.size >0 ">
+                <foreach collection="list" item="id" open="id IN (" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <!-- collection 和 association支持懒加载 -->
+    <!-- 懒加载是按需加载 -->
+    <select id="findOrderAndUserByLazyLoading" resultMap="lazyLoadingResultMap">
+        SELECT * FROM orders
     </select>
 </mapper>

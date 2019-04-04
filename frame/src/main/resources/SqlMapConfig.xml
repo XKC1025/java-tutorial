@@ -6,9 +6,15 @@
     <!-- 引入配置文件 -->
     <properties resource="db.properties"/>
 
-    <!-- 设置二级缓存 -->
+    
     <settings>
+        <!-- 设置二级缓存 -->
         <setting name="cacheEnabled" value="true"/>
+
+        <!-- 开启懒加载  -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 屏蔽调用toString()导致积极加载 -->
+        <setting name="lazyLoadTriggerMethods" value=""/>
     </settings>
 
     <!-- 配置UserDao别名 -->
