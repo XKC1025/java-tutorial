@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 单例模式 -->
-    <bean id="user" class="com.xkc.learn.domain.User" scope="singleton" init-method="myInit" destroy-method="myDestroy">
+    <bean id="user" class="UserModel" scope="singleton" init-method="myInit" destroy-method="myDestroy">
         <property name="username" value="root"></property>
         <property name="password" value="189546"></property>
     </bean>

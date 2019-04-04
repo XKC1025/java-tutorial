@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xkc.learn.mybatis.dao.EmpMapper">
+    <!-- #{}  占位符可以任意命名 -->
+    <!-- resultType使用别名 -->
+    <select id="findEmpById" parameterType="int" resultType="empModel">
+        SELECT id, `name`, gender, salary, join_date, dept_id
+        FROM `emp`
+        WHERE id = #{id}
+    </select>
+
+    <!-- ${}表示拼接字符串, 会引起SQL注入  -->
+    <!-- 简单类型参数: int byte string ${}里面的参数必须为value -->
+    <select id="findEmpByEmpName" parameterType="string" resultType="empModel">
+        SELECT id, `name`, gender, salary, join_date, dept_id
+        FROM `emp`
+        WHERE `name`
+        LIKE '%${value}%'
+    </select>
+
+    <!-- insert, 占位符是POJO的属性名 -->
+    <insert id="insertEmp" parameterType="empModel" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO `emp`(`name`, gender, salary, join_date, dept_id)
+        VALUE(#{name}, #{gender}, #{salary}, #{join_date}, #{dept_id})
+    </insert>
+
+    <!--  -->
+    <delete id="deleteEmp" parameterType="string">
+        DELETE FROM `emp`
+        WHERE id > 20 AND `name` = #{name}
+    </delete>
+
+    <update id="updateEmp" parameterType="empModel">
+        UPDATE emp
+        SET `name` = #{name}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 两种方式返回自增长主键  keyProperty对应POJO类中的主键id -->
+    <insert id="getPrimaryKey" parameterType="empModel" keyProperty="id" useGeneratedKeys="true">
+        <!-- 自动返回自增长主键 -->
+        <!--        <selectKey keyProperty="id" resultType="int" order="AFTER" >-->
+        <!--            SELECT LAST_INSERT_ID()-->
+        <!--        </selectKey>-->
+        INSERT INTO emp(name, gender, salary, join_date, dept_id)
+        VALUE (#{name}, #{gender}, #{salary}, #{join_date}, #{dept_id})
+    </insert>
+</mapper>

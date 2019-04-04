@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xkc.learn.mybatis.dao.UserMapper">
+    <resultMap id="userResultMap" type="userModel">
+        <result column="id_" property="id"></result>
+        <result column="username_" property="username"></result>
+        <result column="sex_" property="sex"></result>
+        <result column="address_" property="address"></result>
+        <result column="birthday_" property="birthday"></result>
+    </resultMap>
+
+    <!-- SQL片段 -->
+    <sql id="baseColumn">
+        id, username, sex, birthday, address
+    </sql>
+
+    <sql id="queryCondition">
+        <if test="user != null">
+            <if test="user.username != null and user.username != ''">
+                AND username LIKE CONCAT('%', #{user.username}, '%')
+            </if>
+            <if test="user.sex != null and user.sex != ''">
+                AND sex = #{user.sex}
+            </if>
+        </if>
+    </sql>
+
+    <!-- #{}  占位符可以任意命名 -->
+    <select id="findUserById" parameterType="int" resultType="com.xkc.learn.mybatis.domain.UserModel">
+        SELECT id, username, birthday, sex, address
+        FROM `user`
+        WHERE id = #{id}
+    </select>
+
+    <!-- ${}表示拼接字符串, 会引起SQL注入  -->
+    <!-- 简单类型参数: int byte string ${}里面的参数必须为value -->
+    <select id="findUserByUserName" parameterType="string" resultType="com.xkc.learn.mybatis.domain.UserModel">
+        SELECT id, username, birthday, sex, address
+        FROM `user`
+        WHERE username
+        LIKE '%${value}%'
+    </select>
+
+    <!-- insert, 占位符是POJO的属性名 -->
+    <insert id="insertUser" parameterType="com.xkc.learn.mybatis.domain.UserModel">
+        INSERT INTO `user`(username, sex, birthday, address)
+        VALUE(#{username}, #{sex}, #{birthday}, #{address})
+    </insert>
+
+    <!--  -->
+    <delete id="deleteUser" parameterType="string">
+        DELETE FROM `user`
+        WHERE id > 20 AND username = #{username}
+    </delete>
+
+    <update id="updateUser" parameterType="com.xkc.learn.mybatis.domain.UserModel">
+        UPDATE user
+        SET username = #{username}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 两种方式返回自增长主键  keyProperty对应POJO类中的主键id -->
+    <insert id="getPrimaryKey1" parameterType="com.xkc.learn.mybatis.domain.UserModel" keyProperty="id"
+            useGeneratedKeys="true">
+        <!-- 自动返回自增长主键 -->
+        <!--        <selectKey keyProperty="id" resultType="int" order="AFTER" >-->
+        <!--            SELECT LAST_INSERT_ID()-->
+        <!--        </selectKey>-->
+        INSERT INTO user(username, sex, birthday, address)
+        VALUE (#{username}, #{sex}, #{birthday}, #{address})
+    </insert>
+
+    <select id="findByUserQueryVO" parameterType="userQueryVO" resultType="userModel">
+        SELECT u.id, u.username, u.sex, u.birthday, u.address
+        FROM `user` u
+        LEFT JOIN `orders` o
+        ON u.id = o.user_id
+        AND o.money = #{order.money}
+        WHERE u.id = #{user.id}
+    </select>
+
+    <select id="findByMap" parameterType="hashmap" resultType="userModel">
+        SELECT id, username, sex, birthday, address
+        FROM `user`
+        WHERE username LIKE CONCAT('%', #{username}, '%') AND sex = #{sex}
+    </select>
+
+    <select id="findUserCount" resultType="int">
+        SELECT COUNT(*) FROM `user`
+    </select>
+
+    <!-- 返回数据为ResultMap -->
+    <!-- 需要配置映射关系 -->
+    <select id="findByResultMap" parameterType="int" resultMap="userResultMap">
+        SELECT
+        id id_,
+        username username_,
+        sex sex_,
+        birthday birthday_,
+        address address_
+        FROM `user`
+        WHERE id = #{id}
+    </select>
+
+    <!-- 动态SQL -->
+    <!-- where标签可以去掉第一个条件中的and关键字 -->
+    <select id="findByIfWhere" parameterType="userQueryVO" resultType="userModel">
+        SELECT
+        <include refid="baseColumn"/>
+        FROM `user`
+        <where>
+            <include refid="queryCondition"/>
+        </where>
+    </select>
+</mapper>

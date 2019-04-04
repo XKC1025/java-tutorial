@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 引入配置文件 -->
+    <properties resource="db.properties"/>
+
+    <!-- 设置二级缓存 -->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <!-- 配置UserDao别名 -->
+    <typeAliases>
+        <!-- <typeAlias type="com.xkc.learn.mybatis.domain.EmpModel" alias="empModel"></typeAlias> -->
+
+        <!-- 此包路径下的类名首字母小写作为类的别名 -->
+        <package name="com.xkc.learn.mybatis"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!-- <property name="driver" value="com.mysql.cj.jdbc.Driver"/> -->
+                <!-- <property name="url" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/> -->
+                <!-- <property name="username" value="root"/> -->
+                <!-- <property name="password" value="189546"/> -->
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- MyBatis加载映射文件的方式 -->
+    <mappers>
+        <!-- 映射文件的名字 -->
+        <!-- <mapper resource="com/xkc/learn/mybatis/dao/UserMapper.xml"/> -->
+        <!-- <mapper resource="com/xkc/learn/mybatis/dao/EmpMapper.xml"/> -->
+
+        <!-- 接口名 接口名与xml文件名相同  路径名也必须相同-->
+        <!-- <mapper class="com.xkc.learn.mybatis.dao.EmpMapper"/> -->
+
+        <!-- 包名 -->
+        <package name="com.xkc.learn.mybatis.dao"/>
+    </mappers>
+</configuration>
