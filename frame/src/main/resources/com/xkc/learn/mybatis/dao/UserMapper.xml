@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xkc.learn.mybatis.dao.UserMapper">
+    <!-- type=""属性, 默认使用perpetualCache 永久缓存-->
+    <!-- 设置刷新时间间隔 -->
+    <cache flushInterval="3600000"></cache>
+
     <resultMap id="userResultMap" type="userModel">
         <result column="id_" property="id"></result>
         <result column="username_" property="username"></result>
@@ -40,7 +44,8 @@
     </sql>
 
     <!-- #{}  占位符可以任意命名 -->
-    <select id="findUserById" parameterType="int" resultType="com.xkc.learn.mybatis.domain.UserModel">
+    <!-- flushCache禁止刷新二级缓存  针对DML操作 -->
+    <select id="findUserById" parameterType="int" flushCache="false" resultType="com.xkc.learn.mybatis.domain.UserModel">
         SELECT id, username, birthday, sex, address
         FROM `user`
         WHERE id = #{id}
@@ -99,7 +104,8 @@
         WHERE username LIKE CONCAT('%', #{username}, '%') AND sex = #{sex}
     </select>
 
-    <select id="findUserCount" resultType="int">
+    <!-- 此方法禁止使用二级缓存 -->
+    <select id="findUserCount" resultType="int" useCache="false">
         SELECT COUNT(*) FROM `user`
     </select>
 
