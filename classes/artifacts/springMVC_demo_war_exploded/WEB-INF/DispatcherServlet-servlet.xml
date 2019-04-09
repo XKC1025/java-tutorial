@@ -15,12 +15,52 @@
     <!-- 2.配置处理器映射 -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>
 
+    <bean id="converter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+
     <!-- 3.配置适配器 -->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <!-- POJO转成JSON -->
+        <property name="messageConverters" ref="converter"></property>
+    </bean>
 
     <!-- 4.视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views"></property>
         <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!-- 配置支持多视图, 可以返回JSON/XML等数据 -->
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <!-- 配置支持的媒体类型 -->
+        <property name="mediaTypes">
+            <map>
+                <entry key="json" value="application/json"></entry>
+                <entry key="xml" value="application/xml"></entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"></property>
+
+        <!-- 指定默认视图 -->
+        <property name="defaultViews">
+            <list>
+                <!-- 对json格式数据支持 -->
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
+                <!-- xml格式支持 -->
+                <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+                    <constructor-arg>
+                        <bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+                            <property name="classesToBeBound">
+                                <list>
+                                    <value>com.xkc.learn.req.Student</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </property>
     </bean>
 </beans>
