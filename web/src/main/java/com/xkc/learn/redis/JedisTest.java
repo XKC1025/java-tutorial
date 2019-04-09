@@ -3,7 +3,6 @@ package com.xkc.learn.redis;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.transaction.annotation.SpringTransactionAnnotationParser;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;

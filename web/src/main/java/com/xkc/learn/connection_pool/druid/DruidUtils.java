@@ -24,7 +24,7 @@ public class DruidUtils {
         Properties properties = new Properties();
 
         // 获取配置文件流对象
-        InputStream resourceAsStream = DruidUtils.class.getResourceAsStream("druid.properties");
+        InputStream resourceAsStream = DruidUtils.class.getClassLoader().getResourceAsStream("druid.properties");
 
         try {
             properties.load(resourceAsStream);

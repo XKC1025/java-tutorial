@@ -40,7 +40,7 @@
 		
 线程池:
 	复用线程, 线程执行完任务不被销毁, 继续执行下一个任务
-	底层用LinkList<Thread>保存多个线程, list.removeFirst()返回一个线程, 当使用完毕线程, list.add()添加到线程池(队列)
+	底层用LinkedList<Thread>保存多个线程, list.removeFirst()返回一个线程, 当使用完毕线程, list.add()添加到线程池(队列)
 	
 线程间通信 / 等待唤醒机制:
 	多个线程在处理同一个资源, 但是线程的任务不相同

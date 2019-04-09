@@ -1,7 +1,6 @@
 package com.xkc.learn.bean;
 
 import com.xkc.learn.domain.User;
-import com.xkc.learn.impls.IUserServiceImpl;
 import com.xkc.learn.impls.IUserServiceImpl2;
 import com.xkc.learn.service.IUserService;
 import org.springframework.context.ApplicationContext;

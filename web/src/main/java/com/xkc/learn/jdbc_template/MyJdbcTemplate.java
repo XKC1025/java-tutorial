@@ -1,10 +1,12 @@
 package com.xkc.learn.jdbc_template;
 
 import com.xkc.learn.connection_pool.druid.DruidUtils;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.Map;
 
 @SuppressWarnings("all")
 public class MyJdbcTemplate {
+    private static Logger logger = Logger.getLogger(MyJdbcTemplate.class);
     private JdbcTemplate template = new JdbcTemplate(DruidUtils.getDataSource());
 
     @Test
@@ -38,6 +41,7 @@ public class MyJdbcTemplate {
         int count = template.update(SQL, 11111, 22222, 33333);
 
         System.out.println(count);
+        logger.info("asfsadv");
     }
 
     @Test

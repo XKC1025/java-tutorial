@@ -45,6 +45,8 @@ public class MyJdbcSession {
             connection.rollback();
         } finally {
             // 释放资源
+            pre2.close();
+            JDBCUtils.close(connection, pre1);
         }
     }
 }

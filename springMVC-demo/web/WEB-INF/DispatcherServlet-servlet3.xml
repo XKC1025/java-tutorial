@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+    <!-- summary.md.配置URL处理映射
+        BeanNameUrlHandlerMapping:         通过url名字找到对应的控制器
+        SimpleUrlHandlerMapping:           简单的url处理器映射 正则匹配  通过key找到controller的id
+        ControllerClassNameHandlerMapping: 控制器的类名处理器映射, 默认访问路径就是类名
+    -->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+
+<!--    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
+<!--        <property name="mappings">-->
+<!--            <props>-->
+<!--                <prop key="/user1.do">userController</prop>-->
+<!--                <prop key="/user2.do">userController</prop>-->
+<!--                <prop key="/user3.do">userController</prop>-->
+<!--                <prop key="/user*.do">userController</prop>-->
+<!--            </props>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+<!--    <bean class="org.springframework.web.servlet.handler.ControllerClassNameHandlerMapping"></bean>-->
+
+    <!-- 2.配置控制器处理适配器
+        配置如何调用控制器的方法, 执行controller, 调用controller中的方法, 返回ModelAndView
+
+        两种方式:
+            SimpleControllerHandlerAdapter
+            HttpRequestHandlerAdapter  返回值是void
+     -->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
+<!--    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"></bean>-->
+
+    <!-- 3.配置控制器, 相当于配置访问路径
+     id="userController"   SimpleUrlHandlerMapping 需要的指定controller
+     -->
+    <bean name="/user.do" class="com.xkc.learn.controller.UserController"></bean>
+<!--    <bean name="/userlist.do" class="com.xkc.learn.controller.UserController2"></bean>-->
+
+    <!-- 4.配置资源视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+</beans>

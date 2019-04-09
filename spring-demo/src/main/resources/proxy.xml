@@ -24,7 +24,7 @@
         <!-- 配置切面类  不是ref  -->
         <property name="interceptorNames" value="myAspect2"></property>
 
-        <!-- 默认使用动态代理 -->
+        <!-- 默认使用JDK动态代理 -->
         <!-- 配置使用cglib生成代理对象 -->
         <property name="optimize" value="true"></property>
 

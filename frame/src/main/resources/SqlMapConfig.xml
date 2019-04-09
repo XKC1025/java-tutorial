@@ -5,7 +5,6 @@
 <configuration>
     <!-- 引入配置文件 -->
     <properties resource="db.properties"/>
-
     
     <settings>
         <!-- 设置二级缓存 -->

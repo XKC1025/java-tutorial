@@ -112,7 +112,7 @@ AspectJ:
 通知的执行顺序:
 	before -> around -> (afterthrowing)afterreturning -> around -> after
 AspectJ切入点表达式:
-	execution'(修饰符 返回值 包.类.方法名(参数) throws 异常)"
+	execution'(修饰符 返回值 包.类.方法名.(参数) throws 异常)"
 	within
 	this
 	target

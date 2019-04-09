@@ -16,7 +16,7 @@ class Father {
 }
 
 class Sub extends Father {
-    // 父类抛出多个异常, 子类应该抛出和父类相同的异常, 或者是和父类异常的子类, 或者是不抛出异常
+    // 父类抛出多个异常, 子类应该抛出和父类相同的异常, 或者是父类异常的子类, 或者是不抛出异常
     @Override
     public void show() throws ArrayIndexOutOfBoundsException, ClassCastException {
 

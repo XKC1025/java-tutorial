@@ -20,7 +20,7 @@ public class MyProperties {
         properties.setProperty("Email", "898044807@qq.com");
 
         // 用类加载器获取配置文件
-        InputStream resourceAsStream = MyProperties.class.getClassLoader().getResourceAsStream("config.properties");
+        InputStream resourceAsStream = MyProperties.class.getResourceAsStream("config.properties");
 
         // 把系统环境变量信息保存进配置文件
 //        properties.store(new FileOutputStream(new File("/home/xukechen/JavaEE/workspace/java-tutorial/basic/src/main/java/com/xkc/learn/resources/config.properties")), "System environment variables");
